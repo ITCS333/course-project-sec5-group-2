@@ -1,100 +1,138 @@
-<!--
-  Requirement: Create the Dedicated Page for a Single Week
-
-  Instructions:
-  This page displays the full details for one week and allows students
-  to read and post discussion comments.
--->
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <!-- TODO: Add <meta> tags for charset (UTF-8) and viewport
-         (width=device-width, initial-scale=1.0). -->
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Week Details</title>
+     <style>
+          body {
+               font-family: Arial, sans-serif;
+               max-width: 900px;
+               margin: 0 auto;
+               padding: 20px;
+               background-color: #f5f5f5;
+          }
 
-    <!-- TODO: Add a <title>, e.g., "Week Details". -->
+          header {
+               background-color: #2c3e50;
+               color: white;
+               padding: 20px;
+               border-radius: 8px;
+               margin-bottom: 20px;
+          }
 
-    <!-- TODO: Link to your CSS framework or stylesheet. -->
+          header h1 {
+               margin: 0;
+          }
 
-    <!-- Required: link details.js with defer. -->
-    <script src="details.js" defer></script>
+          article {
+               background: white;
+               padding: 20px;
+               border-radius: 8px;
+               box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+               margin-bottom: 20px;
+          }
+
+          #week-links-list li {
+               margin-bottom: 8px;
+          }
+
+          #week-links-list a {
+               color: #2c3e50;
+          }
+
+          #discussion-forum {
+               background: white;
+               padding: 20px;
+               border-radius: 8px;
+               box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+          }
+
+          #comment-list article {
+               border-left: 4px solid #2c3e50;
+               margin-bottom: 10px;
+               padding: 10px 15px;
+               box-shadow: none;
+          }
+
+          #comment-list footer {
+               color: #888;
+               font-size: 0.85em;
+               margin-top: 5px;
+          }
+
+          textarea {
+               width: 100%;
+               padding: 10px;
+               border: 1px solid #ccc;
+               border-radius: 5px;
+               font-size: 1em;
+               box-sizing: border-box;
+          }
+
+          button[type="submit"] {
+               margin-top: 10px;
+               padding: 10px 20px;
+               background-color: #2c3e50;
+               color: white;
+               border: none;
+               border-radius: 5px;
+               cursor: pointer;
+               font-size: 1em;
+          }
+
+          button[type="submit"]:hover {
+               background-color: #3d5166;
+          }
+
+          a.back-link {
+               display: inline-block;
+               margin-bottom: 15px;
+               color: #2c3e50;
+               text-decoration: none;
+          }
+
+          a.back-link:hover {
+               text-decoration: underline;
+          }
+     </style>
+     <script src="details.js" defer></script>
 </head>
+
 <body>
 
-    <!-- TODO: Create a <header>.
-         Inside it, add an <h1 id="week-title">.
-         details.js will set its textContent to the week's title.
-         Leave it empty for now. -->
+     <header>
+          <h1 id="week-title">Loading...</h1>
+     </header>
 
-    <!-- TODO: Create the <main> content area. -->
+     <main>
+          <a class="back-link" href="list.html">← Back to All Weeks</a>
 
-        <!-- ============================================================
-             Section 1: Weekly Information
-             ============================================================ -->
-        <!-- TODO: Use an <article> to display the main weekly information. -->
+          <article>
+               <p id="week-start-date"></p>
+               <h2>Description & Notes</h2>
+               <p id="week-description"></p>
+               <h2>Exercises & Resources</h2>
+               <ul id="week-links-list"></ul>
+          </article>
 
-            <!-- TODO: Add a <p id="week-start-date">.
-                 details.js will set it to "Starts on: YYYY-MM-DD"
-                 using the start_date column from the weeks table. -->
+          <section id="discussion-forum">
+               <h2>Discussion</h2>
+               <div id="comment-list"></div>
 
-            <!-- TODO: Add a <h2> "Description & Notes". -->
+               <form id="comment-form" action="#">
+                    <fieldset>
+                         <legend>Leave a Comment</legend>
+                         <label for="new-comment">Your Comment:</label><br><br>
+                         <textarea id="new-comment" rows="4" required
+                              placeholder="Write your comment here..."></textarea>
+                         <button type="submit">Post Comment</button>
+                    </fieldset>
+               </form>
+          </section>
+     </main>
 
-            <!-- TODO: Add a <p id="week-description">.
-                 details.js will set its textContent to the week's
-                 description from the weeks table. -->
-
-            <!-- TODO: Add a <h2> "Exercises & Resources". -->
-
-            <!-- TODO: Add a <ul id="week-links-list">.
-                 details.js will populate this list from the links
-                 column in the weeks table. That column is a JSON-encoded
-                 array of URL strings. Each URL becomes a <li><a> item.
-                 Leave the list empty here. -->
-
-        <!-- End of <article> -->
-
-
-        <!-- ============================================================
-             Section 2: Discussion Forum
-             ============================================================ -->
-        <!-- TODO: Create a <section id="discussion-forum">. -->
-
-            <!-- TODO: Add a <h2> "Discussion". -->
-
-            <!-- Subsection 2.1: Existing Comments -->
-            <!-- TODO: Add a <div id="comment-list">.
-                 details.js will inject one <article> per comment here.
-                 Each comment article follows this structure:
-
-                 <article>
-                     <p>Comment text goes here.</p>
-                     <footer>Posted by: Author Name</footer>
-                 </article>
-
-                 Comments come from the comments_week table
-                 (columns: id, week_id, author, text, created_at).
-                 Leave the div empty here. -->
-
-            <!-- Subsection 2.2: Add a Comment Form -->
-            <!-- TODO: Create a <form id="comment-form"> (action="#").
-                 The id is required by details.js. -->
-
-                <!-- TODO: Use a <fieldset> to group the controls. -->
-                    <!-- TODO: Add a <legend>, e.g., "Leave a Comment". -->
-
-                    <!-- TODO: Add a <label> and <textarea> for the comment.
-                         - label for="new-comment"
-                         - textarea id="new-comment", required
-                         - The id must be exactly "new-comment" as
-                           details.js reads this element by that id. -->
-
-                    <!-- TODO: Add a submit <button>.
-                         - type="submit"
-                         - Text: "Post Comment" -->
-                <!-- End of <fieldset> -->
-            <!-- End of <form> -->
-
-        <!-- End of <section#discussion-forum> -->
-
-    <!-- End of <main> -->
 </body>
+
 </html>

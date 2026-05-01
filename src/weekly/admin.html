@@ -1,123 +1,191 @@
-<!--
-  Requirement: Create the Admin View for the Weekly Breakdown
-
-  Instructions:
-  Fill in the HTML elements as described in the comments.
-  This page allows the teacher (admin) to perform full CRUD operations
-  on the weekly course content.
--->
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <!-- TODO: Add the <meta> tag for character encoding (UTF-8). -->
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Manage Weekly Breakdown</title>
+     <style>
+          body {
+               font-family: Arial, sans-serif;
+               max-width: 1000px;
+               margin: 0 auto;
+               padding: 20px;
+               background-color: #f5f5f5;
+          }
 
-    <!-- TODO: Add the responsive viewport <meta> tag
-         (width=device-width, initial-scale=1.0). -->
+          header {
+               background-color: #2c3e50;
+               color: white;
+               padding: 20px;
+               border-radius: 8px;
+               margin-bottom: 20px;
+          }
 
-    <!-- TODO: Add a <title>, e.g., "Manage Weekly Breakdown". -->
+          header h1 {
+               margin: 0;
+          }
 
-    <!-- TODO: Link to your CSS framework or stylesheet. -->
+          section {
+               background: white;
+               padding: 20px;
+               border-radius: 8px;
+               box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+               margin-bottom: 20px;
+          }
 
-    <!-- Required: link admin.js with defer. -->
-    <script src="admin.js" defer></script>
+          fieldset {
+               border: 1px solid #ccc;
+               border-radius: 5px;
+               padding: 15px;
+          }
+
+          label {
+               display: block;
+               margin-top: 10px;
+               font-weight: bold;
+          }
+
+          input[type="text"],
+          input[type="date"],
+          textarea {
+               width: 100%;
+               padding: 8px;
+               margin-top: 5px;
+               border: 1px solid #ccc;
+               border-radius: 5px;
+               box-sizing: border-box;
+               font-size: 1em;
+          }
+
+          button[type="submit"] {
+               margin-top: 15px;
+               padding: 10px 25px;
+               background-color: #2c3e50;
+               color: white;
+               border: none;
+               border-radius: 5px;
+               cursor: pointer;
+               font-size: 1em;
+          }
+
+          button[type="submit"]:hover {
+               background-color: #3d5166;
+          }
+
+          table {
+               width: 100%;
+               border-collapse: collapse;
+               margin-top: 10px;
+          }
+
+          th,
+          td {
+               padding: 10px;
+               border: 1px solid #ddd;
+               text-align: left;
+          }
+
+          th {
+               background-color: #2c3e50;
+               color: white;
+          }
+
+          tr:nth-child(even) {
+               background-color: #f9f9f9;
+          }
+
+          .edit-btn {
+               padding: 5px 10px;
+               background-color: #f39c12;
+               color: white;
+               border: none;
+               border-radius: 4px;
+               cursor: pointer;
+               margin-right: 5px;
+          }
+
+          .delete-btn {
+               padding: 5px 10px;
+               background-color: #e74c3c;
+               color: white;
+               border: none;
+               border-radius: 4px;
+               cursor: pointer;
+          }
+
+          .edit-btn:hover {
+               background-color: #d68910;
+          }
+
+          .delete-btn:hover {
+               background-color: #c0392b;
+          }
+
+          a.back-link {
+               display: inline-block;
+               margin-bottom: 15px;
+               color: #2c3e50;
+               text-decoration: none;
+          }
+
+          a.back-link:hover {
+               text-decoration: underline;
+          }
+     </style>
+     <script src="admin.js" defer></script>
 </head>
+
 <body>
 
-    <!-- TODO: Create a <header> containing an <h1>
-         "Manage Weekly Breakdown". -->
+     <header>
+          <h1>Manage Weekly Breakdown</h1>
+     </header>
 
-    <!-- TODO: Create the <main> content area. -->
+     <main>
+          <a class="back-link" href="list.html">← Back to List</a>
 
-        <!-- ============================================================
-             Section 1: Add / Edit Week Form
-             ============================================================ -->
-        <!-- TODO: Create a <section> for the form. -->
+          <!-- Section 1: Form -->
+          <section>
+               <h2>Add a New Week</h2>
+               <form id="week-form" action="#">
+                    <fieldset>
+                         <legend>Weekly Details</legend>
 
-            <!-- TODO: Add a sub-heading <h2> "Add a New Week". -->
+                         <label for="week-title">Week Title</label>
+                         <input type="text" id="week-title" required placeholder="Week 1: Introduction to HTML">
 
-            <!-- TODO: Create a <form id="week-form"> (action can be "#").
-                 The id is required by admin.js. -->
+                         <label for="week-start-date">Start Date</label>
+                         <input type="date" id="week-start-date" required>
 
-                <!-- TODO: Use a <fieldset> to group the form controls. -->
-                    <!-- TODO: Add a <legend>, e.g., "Weekly Details". -->
+                         <label for="week-description">Description</label>
+                         <textarea id="week-description" rows="5"></textarea>
 
-                    <!-- TODO: Add a <label> and <input> for the week title.
-                         - label for="week-title"
-                         - input id="week-title", type="text", required
-                         - Placeholder: "Week 1: Introduction to HTML" -->
+                         <label for="week-links">Resource Links (one URL per line)</label>
+                         <textarea id="week-links" rows="3" placeholder="https://example.com"></textarea>
 
-                    <!-- TODO: Add a <label> and <input> for the start date.
-                         - label for="week-start-date"
-                         - input id="week-start-date", type="date", required
-                         - Maps to the start_date column in the weeks table. -->
+                         <button type="submit" id="add-week">Add Week</button>
+                    </fieldset>
+               </form>
+          </section>
 
-                    <!-- TODO: Add a <label> and <textarea> for the week
-                         description.
-                         - label for="week-description"
-                         - textarea id="week-description", rows="5"
-                         - Maps to the description column in the weeks table. -->
+          <!-- Section 2: Table -->
+          <section>
+               <h2>Current Weekly Breakdown</h2>
+               <table id="weeks-table">
+                    <thead>
+                         <tr>
+                              <th>Week Title</th>
+                              <th>Start Date</th>
+                              <th>Description</th>
+                              <th>Actions</th>
+                         </tr>
+                    </thead>
+                    <tbody id="weeks-tbody"></tbody>
+               </table>
+          </section>
+     </main>
 
-                    <!-- TODO: Add a <label> and <textarea> for resource links
-                         (one URL per line).
-                         - label for="week-links"
-                         - textarea id="week-links", rows="3"
-                         - Maps to the links column (JSON array) in the
-                           weeks table. admin.js will split the textarea
-                           value on newlines and send it as an array. -->
-
-                    <!-- TODO: Add a submit <button>.
-                         - id="add-week", type="submit"
-                         - Text: "Add Week"
-                         - When the form is in edit mode, admin.js will
-                           change the button text to "Update Week" and
-                           store the id being edited in a data attribute. -->
-                <!-- End of <fieldset> -->
-            <!-- End of <form> -->
-        <!-- End of form <section> -->
-
-
-        <!-- ============================================================
-             Section 2: Existing Weekly Entries
-             ============================================================ -->
-        <!-- TODO: Create a <section> to display the current list of weeks. -->
-
-            <!-- TODO: Add a sub-heading <h2> "Current Weekly Breakdown". -->
-
-            <!-- TODO: Create a <table id="weeks-table">. -->
-
-                <!-- TODO: Create a <thead> with a <tr> containing <th>
-                     elements:
-                     - "Week Title"
-                     - "Start Date"
-                     - "Description"
-                     - "Actions"
-                     The columns must match the data rendered by
-                     admin.js createWeekRow(). -->
-
-                <!-- TODO: Create a <tbody id="weeks-tbody">.
-                     The id is required by admin.js so it can inject
-                     <tr> rows. admin.js will clear and repopulate this
-                     tbody whenever the data changes. -->
-
-                <!-- admin.js will inject rows here. Each row follows
-                     this structure (do NOT hardcode real data):
-
-                <tr>
-                    <td>Week 1: Introduction to HTML</td>
-                    <td>2025-01-13</td>
-                    <td>Learn HTML fundamentals...</td>
-                    <td>
-                        <button class="edit-btn"   data-id="1">Edit</button>
-                        <button class="delete-btn" data-id="1">Delete</button>
-                    </td>
-                </tr>
-
-                The data-id attribute holds the integer id from the
-                weeks table (primary key). -->
-
-            <!-- End of <table> -->
-        <!-- End of list <section> -->
-
-    <!-- End of <main> -->
 </body>
+
 </html>

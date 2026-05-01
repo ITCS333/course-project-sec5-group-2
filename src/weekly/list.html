@@ -1,51 +1,79 @@
-<!--
-  Requirement: Create the Student View for the Weekly Breakdown
-
-  Instructions:
-  This page is a read-only view for students to see the plan for all weeks.
-  Each week should link to its dedicated detail page.
--->
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <!-- TODO: Add meta tags for charset (UTF-8) and viewport
-         (width=device-width, initial-scale=1.0). -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weekly Course Breakdown</title>
+    <link rel="stylesheet" href="../../src/common/styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
 
-    <!-- TODO: Add a <title>, e.g., "Weekly Course Breakdown". -->
+        header {
+            background-color: #2c3e50;
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
 
-    <!-- TODO: Link to your CSS framework or stylesheet. -->
+        header h1 {
+            margin: 0;
+        }
 
-    <!-- Required: link list.js with defer so the DOM is ready before the
-         script runs. -->
+        article {
+            background: white;
+            padding: 20px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            border-left: 5px solid #2c3e50;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        article h2 {
+            margin-top: 0;
+            color: #2c3e50;
+        }
+
+        article p {
+            color: #555;
+        }
+
+        article a {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 8px 16px;
+            background-color: #2c3e50;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+
+        article a:hover {
+            background-color: #3d5166;
+        }
+    </style>
     <script src="list.js" defer></script>
 </head>
+
 <body>
 
-    <!-- TODO: Create a <header> containing an <h1> "Weekly Course Breakdown". -->
+    <header>
+        <h1>Weekly Course Breakdown</h1>
+    </header>
 
-    <!-- TODO: Create the <main> content area. -->
-
-        <!-- TODO: Create a <section id="week-list-section"> to contain the
-             list of week articles. The id is required by list.js. -->
-
-            <!-- list.js will inject one <article> per week here.
-                 Each article follows the structure below. -->
-
-            <!-- Example Week Article Structure (do NOT hardcode real data;
-                 list.js fetches it from the API):
-
-            <article>
-                <h2>Week 1: Introduction to HTML</h2>
-                <p>Starts on: 2025-01-13</p>
-                <p>Learn HTML fundamentals...</p>
-                <a href="details.html?id=1">View Details & Discussion</a>
-            </article>
-
-            Note: the href MUST be "details.html?id=<id>" so that
-            details.js can read the id from the URL query string. -->
-
-        <!-- End of #week-list-section -->
-    <!-- End of <main> -->
+    <main>
+        <section id="week-list-section">
+            <!-- list.js will inject articles here -->
+        </section>
+    </main>
 
 </body>
+
 </html>
