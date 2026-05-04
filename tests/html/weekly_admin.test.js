@@ -5,12 +5,12 @@
  * Each test is worth 1 point.
  */
 
-const fs   = require("fs");
+const fs = require("fs");
 const path = require("path");
 
 beforeAll(() => {
   const htmlPath = path.resolve(__dirname, "../../src/weekly/admin.html");
-  const html     = fs.readFileSync(htmlPath, "utf8");
+  const html = fs.readFileSync(htmlPath, "utf8");
   document.documentElement.innerHTML = html;
 });
 
@@ -25,7 +25,7 @@ test("[HTML-01] <meta charset='UTF-8'> exists", () => {
 });
 
 test("[HTML-02] <meta name='viewport'> exists with correct content", () => {
-  const meta    = document.querySelector("meta[name='viewport']");
+  const meta = document.querySelector("meta[name='viewport']");
   expect(meta).not.toBeNull();
   const content = meta.getAttribute("content") || "";
   expect(content).toMatch(/width=device-width/i);
@@ -42,7 +42,7 @@ test("[HTML-04] <script src='admin.js'> with defer attribute exists", () => {
   const raw = fs.readFileSync(
     path.resolve(__dirname, "../../src/weekly/admin.html"), "utf8"
   );
-  const srcFirst   = /<script[^>]+src=["']admin\.js["'][^>]*defer[^>]*>/i;
+  const srcFirst = /<script[^>]+src=["']admin\.js["'][^>]*defer[^>]*>/i;
   const deferFirst = /<script[^>]+defer[^>]+src=["']admin\.js["'][^>]*>/i;
   expect(srcFirst.test(raw) || deferFirst.test(raw)).toBe(true);
 });
