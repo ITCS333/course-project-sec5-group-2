@@ -1,93 +1,113 @@
-<!--
-  Requirement: Create a Responsive Login Page
-
-  Instructions:
-  Fill in the HTML elements as described in the comments.
-  Use the provided IDs for the elements that require them.
-  You are encouraged to use a CSS framework for styling, as hinted in the comments,
-  but you can also use your own stylesheet.
--->
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <!-- TODO: Add the 'meta' tag to specify the character encoding for the document to be UTF-8. -->
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Login</title>
+     <style>
+          body {
+               font-family: Arial, sans-serif;
+               max-width: 500px;
+               margin: 100px auto;
+               padding: 20px;
+               background-color: #f5f5f5;
+          }
 
+          form {
+               background: white;
+               padding: 30px;
+               border-radius: 8px;
+               box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+          }
 
-    <!-- TODO: Add the 'meta' tag that makes the page responsive.
-         The 'name' should be 'viewport' and the 'content' should set the 'width' to 'device-width'
-         and the 'initial-scale' to '1.0'. -->
+          h2 {
+               text-align: center;
+               color: #2c3e50;
+               margin-bottom: 20px;
+          }
 
+          fieldset {
+               border: 1px solid #ccc;
+               border-radius: 5px;
+               padding: 15px;
+          }
 
-    <!-- TODO: Add a 'title' for the page. It should be "Login". -->
+          legend {
+               font-weight: bold;
+               color: #2c3e50;
+          }
 
+          label {
+               display: block;
+               margin-top: 10px;
+               font-weight: bold;
+          }
 
-    <!-- TODO: Link to a CSS file or a CSS framework like PicoCSS or Bootstrap to style the page. You can use a CDN link. -->
+          input {
+               width: 100%;
+               padding: 8px;
+               margin-top: 5px;
+               border: 1px solid #ccc;
+               border-radius: 5px;
+               box-sizing: border-box;
+               font-size: 1em;
+          }
 
+          button[type="submit"] {
+               width: 100%;
+               margin-top: 15px;
+               padding: 10px;
+               background-color: #2c3e50;
+               color: white;
+               border: none;
+               border-radius: 5px;
+               cursor: pointer;
+               font-size: 1em;
+          }
 
+          button[type="submit"]:hover {
+               background-color: #3d5166;
+          }
+
+          #message-container {
+               margin-top: 15px;
+               padding: 10px;
+               border-radius: 5px;
+               text-align: center;
+          }
+
+          #message-container.error {
+               background-color: #f8d7da;
+               color: #721c24;
+          }
+
+          #message-container.success {
+               background-color: #d4edda;
+               color: #155724;
+          }
+     </style>
+     <script src="login.js" defer></script>
 </head>
-<body <!-- TODO: Add any styling to the 'body' tag to center the login form on the page. -->>
 
-    <!-- This will be the main content area of the page. -->
-    <!-- TODO: Use the 'main' element to contain the login form, as it represents the primary content of the document. -->
+<body>
 
-        <!-- This 'section' groups the related content of the login form. -->
-        <!-- TODO: Create a 'section' element to act as the login card. -->
+     <form id="login-form">
+          <h2>Course Website</h2>
+          <fieldset>
+               <legend>Login</legend>
 
-            <!-- The heading of the login form -->
-            <!-- TODO: Add a heading element (e.g., 'h1' or 'h2') for the form's title. The text should be "Welcome Back!". -->
+               <label for="email">Email</label>
+               <input type="email" id="email" required placeholder="Enter your email">
 
+               <label for="password">Password</label>
+               <input type="password" id="password" required minlength="8" placeholder="Enter your password">
 
-            <!-- The form element will wrap all the inputs. -->
-            <!-- TODO: Create a 'form' element. Give it an 'id' of "login-form". The 'action' can be '#' for now. -->
-
-                <!-- TODO: Use a 'fieldset' to group all the related controls for the login form. -->
-                
-                    <!-- TODO: Add a 'legend' to caption the fieldset. e.g., "Secure Login". This improves accessibility. -->
-
-                    <!-- TODO: Add a 'label' for the email input field.
-                         The 'for' attribute should be "email".
-                         The text should be "Email Address". -->
-
-
-                    <!-- TODO: Add an 'input' field for the email.
-                         - The type should be "email".
-                         - The id must be "email".
-                         - It should be a required field. -->
-
-
-                    <!-- TODO: Add a 'label' for the password input field.
-                         The 'for' attribute should be "password".
-                         The text should be "Password". -->
-
-
-                    <!-- TODO: Add an 'input' field for the password.
-                         - The type should be "password".
-                         - The id must be "password".
-                         - It should be a required field.
-                         - For validation, add a 'minlength' attribute (e.g., minlength="8"). -->
-                
-
-                    <!-- This is the form submission button. -->
-                    <!-- TODO: Add a 'button' to submit the form, inside the fieldset.
-                         - The type should be "submit".
-                         - The id must be "login".
-                         - The text should be "Log In". -->
-                
-                <!-- End of the fieldset. -->
-
-                <!-- TODO: Add a <div> element here with id="message-container".
-                     This will be used by login.js to display success or error messages.
-                     Example: <div id="message-container"></div> -->
-
-            <!-- End of the form element. -->
-
-
-        <!-- End of the login section. -->
-
-    <!-- End of the main content area. -->
-
-    <!-- TODO: Link the login.js script here using a <script> tag with the 'defer' attribute.
-         Example: <script src="login.js" defer></script> -->
+               <button type="submit" id="login">Log In</button>
+          </fieldset>
+          <div id="message-container"></div>
+     </form>
 
 </body>
+
 </html>
