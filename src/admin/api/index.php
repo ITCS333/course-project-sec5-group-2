@@ -9,7 +9,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
     exit;
 }
 
-require_once __DIR__ . '/../../common/db.php';
+if (file_exists(__DIR__ . '/db.php')) {
+    require_once __DIR__ . '/db.php';
+} else {
+    require_once __DIR__ . '/../../common/db.php';
+}
 $db     = getDBConnection();
 $method = $_SERVER['REQUEST_METHOD'];
 $raw    = file_get_contents('php://input');
