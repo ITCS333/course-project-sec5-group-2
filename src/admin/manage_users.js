@@ -209,4 +209,18 @@ async function loadUsersAndInitialize() {
   }
 }
 
-loadUsersAndInitialize();
+// Export for testing
+if (typeof module !== 'undefined') {
+  module.exports = {
+    createUserRow,
+    renderTable,
+    handleChangePassword,
+    handleAddUser,
+    handleTableClick,
+    handleSearch,
+    handleSort,
+    loadUsersAndInitialize
+  };
+} else {
+  loadUsersAndInitialize();
+}
