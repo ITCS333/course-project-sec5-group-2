@@ -322,3 +322,6 @@ async function initializePage() {
 
 // --- Initial Page Load ---
 initializePage();
+if (typeof module !== 'undefined') {
+  module.exports = { getAssignmentIdFromURL, renderAssignmentDetails, createCommentArticle, renderComments, handleAddComment, initializePage };
+}
