@@ -104,7 +104,6 @@ async function loadAssignments() {
 }
 
 // --- Initial Page Load ---
-loadAssignments();
-if (typeof module !== 'undefined') {
-  module.exports = { createAssignmentArticle, loadAssignments };
+if (typeof fetch !== 'undefined' && typeof module === 'undefined') {
+  loadAssignments();
 }

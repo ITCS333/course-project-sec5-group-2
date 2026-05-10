@@ -335,7 +335,6 @@ async function loadAndInitialize() {
 }
 
 // --- Initial Page Load ---
-loadAndInitialize();
-if (typeof module !== 'undefined') {
-  module.exports = { createAssignmentRow, renderTable, handleAddAssignment, handleUpdateAssignment, handleTableClick, loadAndInitialize };
+if (typeof fetch !== 'undefined' && typeof module === 'undefined') {
+  loadAndInitialize();
 }
