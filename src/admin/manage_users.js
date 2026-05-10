@@ -44,6 +44,10 @@ function handleChangePassword(event) {
     return;
   }
 
+  document.getElementById('current-password').value = '';
+  document.getElementById('new-password').value = '';
+  document.getElementById('confirm-password').value = '';
+
   fetch('../api/index.php?action=change_password', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
@@ -57,9 +61,6 @@ function handleChangePassword(event) {
     .then(result => {
       if (result.success) {
         alert('Password updated successfully!');
-        document.getElementById('current-password').value = '';
-        document.getElementById('new-password').value = '';
-        document.getElementById('confirm-password').value = '';
       } else {
         alert(result.message || 'Failed to update password.');
       }
