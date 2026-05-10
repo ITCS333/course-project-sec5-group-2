@@ -324,3 +324,11 @@ async function initializePage() {
 if (typeof fetch !== 'undefined' && typeof module === 'undefined') {
   initializePage();
 }
+if (typeof window !== 'undefined') {
+  window.getAssignmentIdFromURL = getAssignmentIdFromURL;
+  window.renderAssignmentDetails = renderAssignmentDetails;
+  window.createCommentArticle = createCommentArticle;
+  window.renderComments = renderComments;
+  window.handleAddComment = handleAddComment;
+  window.initializePage = initializePage;
+}

@@ -107,3 +107,7 @@ async function loadAssignments() {
 if (typeof fetch !== 'undefined' && typeof module === 'undefined') {
   loadAssignments();
 }
+if (typeof window !== 'undefined') {
+  window.createAssignmentArticle = createAssignmentArticle;
+  window.loadAssignments = loadAssignments;
+}

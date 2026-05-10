@@ -338,3 +338,11 @@ async function loadAndInitialize() {
 if (typeof fetch !== 'undefined' && typeof module === 'undefined') {
   loadAndInitialize();
 }
+if (typeof window !== 'undefined') {
+  window.createAssignmentRow = createAssignmentRow;
+  window.renderTable = renderTable;
+  window.handleAddAssignment = handleAddAssignment;
+  window.handleUpdateAssignment = handleUpdateAssignment;
+  window.handleTableClick = handleTableClick;
+  window.loadAndInitialize = loadAndInitialize;
+}
