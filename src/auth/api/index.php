@@ -37,7 +37,11 @@ if (strlen($password) < 8) {
     exit;
 }
 
-require_once __DIR__ . '/../../common/db.php';
+if (file_exists(__DIR__ . '/db.php')) {
+    require_once __DIR__ . '/db.php';
+} else {
+    require_once __DIR__ . '/../../common/db.php';
+}
 $db = getDBConnection();
 
 try {
