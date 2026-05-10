@@ -222,5 +222,7 @@ if (typeof module !== 'undefined') {
     loadUsersAndInitialize
   };
 } else {
-  loadUsersAndInitialize();
+  if (typeof window !== 'undefined' && typeof fetch !== 'undefined') {
+    loadUsersAndInitialize();
+  }
 }
