@@ -25,7 +25,7 @@
 // --- Element Selections ---
 // TODO: Select the section for the assignment list using its
 //       id 'assignment-list-section'.
-  const assignmentListSection = document.getElementById('assignment-list-section');
+const assignmentListSection = document.getElementById('assignment-list-section');
 
 // --- Functions ---
 
@@ -56,16 +56,25 @@
  */
 function createAssignmentArticle(assignment) {
   // ... your implementation here ...
-   const article = document.createElement('article');
+  const article = document.createElement('article');
 
-  article.innerHTML = `
-    <h2>${assignment.title}</h2>
-    <p>Due: ${assignment.due_date}</p>
-    <p>${assignment.description}</p>
-    <a href="details.html?id=${assignment.id}">
-      View Details &amp; Discussion
-    </a>
-  `;
+  const h2 = document.createElement('h2');
+  h2.textContent = assignment.title;
+
+  const due = document.createElement('p');
+  due.textContent = "Due: " + assignment.due_date;
+
+  const desc = document.createElement('p');
+  desc.textContent = assignment.description;
+
+  const link = document.createElement('a');
+  link.href = `details.html?id=${assignment.id}`;
+  link.textContent = "View Details & Discussion";
+
+  article.appendChild(h2);
+  article.appendChild(due);
+  article.appendChild(desc);
+  article.appendChild(link);
 
   return article;
 }
@@ -85,26 +94,24 @@ function createAssignmentArticle(assignment) {
  */
 async function loadAssignments() {
   // ... your implementation here ...
-   const response = await fetch('./api/index.php');
+  try {
+    const response = await fetch('./api/index.php');
 
-  const result = await response.json();
+    const result = await response.json();
 
-  assignmentListSection.innerHTML = '';
+    assignmentListSection.innerHTML = "";
 
-  if (result.success) {
-
-    result.data.forEach((assignment) => {
-
-      const article = createAssignmentArticle(assignment);
-
-      assignmentListSection.appendChild(article);
-
-    });
+    if (result.success && Array.isArray(result.data)) {
+      result.data.forEach(assignment => {
+        const article = createAssignmentArticle(assignment);
+        assignmentListSection.appendChild(article);
+      });
+    }
+  } 
+  catch (error) {
+    console.error("Error loading assignments:", error);
   }
 }
 
 // --- Initial Page Load ---
 loadAssignments();
-if (typeof module !== 'undefined') {
-  module.exports = { createAssignmentArticle, loadAssignments };
-}

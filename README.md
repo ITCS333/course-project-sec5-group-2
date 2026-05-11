@@ -13,15 +13,15 @@ The website covers five functional areas, each assigned to one team member.
 
 ## Live Demo
 
-> **Replit Deployment:** Update this link with your Replit deployment URL once the project is live.
-
+> **Replit Deployment:** NotWorking.
+> **infinityfree:** https://uobstudent.wuaze.com/
 ---
 
 ## Team
 
 | Task | Description | Student ID | GitHub Username |
 |------|-------------|------------|-----------------|
-| 1 | Home Page, Authentication & User Management | 20196128 |ShehabMuthannaH6 |
+| 1 | Home Page, Authentication & User Management |20196128 |ShehabMuthannaH6 |
 | 2 | Course Resources |202404899 |okno0 |
 | 3 | Weekly Breakdown | 20196128 | ShehabMuthannaH6 |
 | 4 | Assignments |202210436 | Jaffaradel25|

@@ -47,17 +47,13 @@ let currentComments     = [];
 //   assignmentTitle, assignmentDueDate, assignmentDescription,
 //   assignmentFilesList, commentList, commentForm, newCommentInput.
 const assignmentTitle = document.getElementById('assignment-title');
-
 const assignmentDueDate = document.getElementById('assignment-due-date');
-
 const assignmentDescription = document.getElementById('assignment-description');
 
 const assignmentFilesList = document.getElementById('assignment-files-list');
-
 const commentList = document.getElementById('comment-list');
 
 const commentForm = document.getElementById('comment-form');
-
 const newCommentInput = document.getElementById('new-comment');
 
 // --- Functions ---
@@ -73,9 +69,7 @@ const newCommentInput = document.getElementById('new-comment');
  */
 function getAssignmentIdFromURL() {
   // ... your implementation here ...
-  const params =
-    new URLSearchParams(window.location.search);
-
+  const params = new URLSearchParams(window.location.search);
   return params.get('id');
 }
 
@@ -97,33 +91,21 @@ function getAssignmentIdFromURL() {
  */
 function renderAssignmentDetails(assignment) {
   // ... your implementation here ...
+  assignmentTitle.textContent = assignment.title;
+  assignmentDueDate.textContent = "Due: " + assignment.due_date;
+  assignmentDescription.textContent = assignment.description;
 
+  assignmentFilesList.innerHTML = "";
 
-   assignmentTitle.textContent =
-    assignment.title;
-
-  assignmentDueDate.textContent =
-    'Due: ' + assignment.due_date;
-
-  assignmentDescription.textContent =
-    assignment.description;
-
-  assignmentFilesList.innerHTML = '';
-
-  assignment.files.forEach((url) => {
-
+  assignment.files.forEach(url => {
     const li = document.createElement('li');
-
     const a = document.createElement('a');
 
     a.href = url;
-
     a.textContent = url;
-
-    a.target = '_blank';
+    a.target = "_blank";
 
     li.appendChild(a);
-
     assignmentFilesList.appendChild(li);
   });
 }
@@ -143,13 +125,16 @@ function renderAssignmentDetails(assignment) {
  */
 function createCommentArticle(comment) {
   // ... your implementation here ...
-    const article =
-    document.createElement('article');
+  const article = document.createElement('article');
 
-  article.innerHTML = `
-    <p>${comment.text}</p>
-    <footer>Posted by: ${comment.author}</footer>
-  `;
+  const p = document.createElement('p');
+  p.textContent = comment.text;
+
+  const footer = document.createElement('footer');
+  footer.textContent = "Posted by: " + comment.author;
+
+  article.appendChild(p);
+  article.appendChild(footer);
 
   return article;
 }
@@ -165,16 +150,12 @@ function createCommentArticle(comment) {
  */
 function renderComments() {
   // ... your implementation here ...
-   commentList.innerHTML = '';
+  commentList.innerHTML = "";
 
-  currentComments.forEach((comment) => {
-
-    const article =
-      createCommentArticle(comment);
-
+  currentComments.forEach(comment => {
+    const article = createCommentArticle(comment);
     commentList.appendChild(article);
   });
-
 }
 
 /**
@@ -202,40 +183,34 @@ async function handleAddComment(event) {
   // ... your implementation here ...
   event.preventDefault();
 
-  const commentText =
-    newCommentInput.value.trim();
+  const commentText = newCommentInput.value.trim();
 
   if (!commentText) return;
 
-  const response = await fetch(
-    './api/index.php?action=comment',
-    {
+  try {
+    const response = await fetch('./api/index.php?action=comment', {
       method: 'POST',
-
       headers: {
         'Content-Type': 'application/json'
       },
-
       body: JSON.stringify({
         assignment_id: currentAssignmentId,
-        author: 'Student',
+        author: "Student",
         text: commentText
       })
+    });
+
+    const result = await response.json();
+
+    if (result.success === true) {
+      currentComments.push(result.data);
+      renderComments();
+      newCommentInput.value = "";
     }
-  );
-
-  const result =
-    await response.json();
-
-  if (result.success) {
-
-    currentComments.push(result.data);
-
-    renderComments();
-
-    newCommentInput.value = '';
+  } 
+  catch (error) {
+    console.error("Error adding comment:", error);
   }
-
 }
 
 /**
@@ -265,63 +240,39 @@ async function handleAddComment(event) {
  */
 async function initializePage() {
   // ... your implementation here ...
- currentAssignmentId =
-    getAssignmentIdFromURL();
+  currentAssignmentId = getAssignmentIdFromURL();
 
   if (!currentAssignmentId) {
-
-    assignmentTitle.textContent =
-      'Assignment not found.';
-
+    assignmentTitle.textContent = "Assignment not found.";
     return;
   }
 
-  const [
-    assignmentResponse,
-    commentsResponse
-  ] = await Promise.all([
+  try {
+    const [assignmentRes, commentsRes] = await Promise.all([
+      fetch(`./api/index.php?id=${currentAssignmentId}`),
+      fetch(`./api/index.php?action=comments&assignment_id=${currentAssignmentId}`)
+    ]);
 
-    fetch(
-      `./api/index.php?id=${currentAssignmentId}`
-    ),
+    const assignmentResult = await assignmentRes.json();
+    const commentsResult = await commentsRes.json();
 
-    fetch(
-      `./api/index.php?action=comments&assignment_id=${currentAssignmentId}`
-    )
-  ]);
+    currentComments = commentsResult.success ? commentsResult.data : [];
 
-  const assignmentResult =
-    await assignmentResponse.json();
+    if (assignmentResult.success && assignmentResult.data) {
+      renderAssignmentDetails(assignmentResult.data);
+      renderComments();
 
-  const commentsResult =
-    await commentsResponse.json();
-
-  currentComments =
-    commentsResult.data || [];
-
-  if (assignmentResult.success) {
-
-    renderAssignmentDetails(
-      assignmentResult.data
-    );
-
-    renderComments();
-
-    commentForm.addEventListener(
-      'submit',
-      handleAddComment
-    );
-
-  } else {
-
-    assignmentTitle.textContent =
-      'Assignment not found.';
+      commentForm.addEventListener('submit', handleAddComment);
+    } 
+    else {
+      assignmentTitle.textContent = "Assignment not found.";
+    }
+  } 
+  catch (error) {
+    console.error("Error initializing page:", error);
+    assignmentTitle.textContent = "Assignment not found.";
   }
-
 }
 
 // --- Initial Page Load ---
 initializePage();
-if (typeof module !== 'undefined') {
-  module.exports = { getAssignmentIdFromURL, renderAssignmentDetails, createCommentArticle, renderComments, handleAddComment, initializePage };
-}
