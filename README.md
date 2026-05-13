@@ -21,11 +21,11 @@ The website covers five functional areas, each assigned to one team member.
 
 | Task | Description | Student ID | GitHub Username |
 |------|-------------|------------|-----------------|
-| 1 | Home Page, Authentication & User Management | |Amoor24 |
+| 1 | Home Page, Authentication & User Management |202305608 |Amoor24 |
 | 2 | Course Resources |202404899 |okno0 |
 | 3 | Weekly Breakdown | 20196128 | ShehabMuthannaH6 |
 | 4 | Assignments |202210436 | Jaffaradel25|
-| 5 | Discussion Board | |Hsain12 |
+| 5 | Discussion Board |202205167 |Hsain12 |
 
 ---
 
