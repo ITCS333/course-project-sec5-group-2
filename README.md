@@ -25,7 +25,7 @@ The website covers five functional areas, each assigned to one team member.
 | 2 | Course Resources |202404899 |okno0 |
 | 3 | Weekly Breakdown | 20196128 | ShehabMuthannaH6 |
 | 4 | Assignments |202210436 | Jaffaradel25|
-| 5 | Discussion Board | | |
+| 5 | Discussion Board | |Hsain12 |
 
 ---
 
